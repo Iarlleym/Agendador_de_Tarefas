@@ -3,8 +3,6 @@ package com.EngCode.agendador_de_tarefas.business.dto;
 // o objetivo é transferir dados, isolando-a da camada de persistência.
 
 import lombok.*;
-
-import java.util.List;
 // Importa a interface List, usada para definir coleções (como Endereços e Telefones).
 
 // BLOCÃO 1: ANOTAÇÕES DO LOMBOK (Estrutura da Classe)
