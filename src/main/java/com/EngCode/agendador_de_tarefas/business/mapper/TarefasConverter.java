@@ -5,11 +5,17 @@ import com.EngCode.agendador_de_tarefas.business.dto.TarefasDTO;
 import com.EngCode.agendador_de_tarefas.infrastucture.entity.TarefasEntity;
 import org.mapstruct.Mapper;
 
+import java.util.List;
+
 @Mapper (componentModel = "spring")
 public interface TarefasConverter {
 
-    TarefasEntity paraTarefaEntity (TarefasDTO tarefasDTO);
+    TarefasEntity paraListaTarefasEntity(TarefasDTO tarefasDTO);
 
-    TarefasDTO paraTarefaDTO (TarefasEntity tarefasEntity);
+    TarefasDTO paraListaTarefaDTO(TarefasEntity tarefasEntity);
+
+    List<TarefasEntity> paraListaTarefasEntity(List<TarefasDTO> tarefasDTOS);
+
+    List<TarefasDTO> paraListaTarefasDTO(List<TarefasEntity> tarefasEntity);
 
 }
