@@ -1,60 +1,93 @@
+// ========================
+// 🔹 Configuração de Plugins
+// ========================
 plugins {
-	id 'java'
-	id 'org.springframework.boot' version '3.5.6'
-	id 'io.spring.dependency-management' version '1.1.7'
+    id 'java'                                           // Suporte a Java
+    id 'org.springframework.boot' version '3.5.6'      // Plugin Spring Boot para facilitar build e execução
+    id 'io.spring.dependency-management' version '1.1.7' // Gerenciamento automático de dependências do Spring
 }
 
-group = 'com.EngCode'
-version = '0.0.1-SNAPSHOT'
+// ========================
+// 🔹 Informações do Projeto
+// ========================
+group = 'com.EngCode'        // Pacote base do projeto
+version = '0.0.1-SNAPSHOT'   // Versão do projeto
 description = 'Demo project for Spring Boot'
 
+// ========================
+// 🔹 Configuração de Java
+// ========================
 java {
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(17)
-	}
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17) // Usando Java 17
+    }
 }
 
+// ========================
+// 🔹 Configurações de compilação
+// ========================
 configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
+    compileOnly {
+        extendsFrom annotationProcessor // Annotation processors também são considerados durante a compilação
+    }
 }
 
+// ========================
+// 🔹 Repositórios para dependências
+// ========================
 repositories {
-	mavenCentral()
+    mavenCentral() // Busca as dependências no Maven Central
 }
 
+// ========================
+// 🔹 Variáveis extras
+// ========================
 ext {
-	set('springCloudVersion', "2025.0.0")
+    set('springCloudVersion', "2025.0.0") // Versão do Spring Cloud utilizada
 }
 
+// ========================
+// 🔹 Dependências do projeto
+// ========================
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
-	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+    // Spring Boot
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb' // MongoDB
+    implementation 'org.springframework.boot:spring-boot-starter-security'     // Segurança (JWT)
+    implementation 'org.springframework.boot:spring-boot-starter-web'          // Web (REST API)
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'   // FeignClient para comunicação entre microserviços
 
-    implementation 'io.jsonwebtoken:jjwt-api:0.12.6'
-    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.12.6'
-    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.6'
+    // JWT
+    implementation 'io.jsonwebtoken:jjwt-api:0.12.6'          // API JWT
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.12.6'            // Implementação JWT
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.6'         // Integração JWT com Jackson
 
+    // MapStruct (mapeamento automático DTO ↔ Entity)
     implementation 'org.mapstruct:mapstruct:1.5.3.Final'
     annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'
-    annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
+    annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.2.0' // Compatibilidade Lombok + MapStruct
 
-	compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.springframework.security:spring-security-test'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    // Lombok
+    compileOnly 'org.projectlombok:lombok'        // Reduz boilerplate (getters, setters, etc.)
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // Testes
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
+// ========================
+// 🔹 Gerenciamento de dependências do Spring Cloud
+// ========================
 dependencyManagement {
-	imports {
-		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
-	}
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
 }
 
+// ========================
+// 🔹 Configuração dos testes
+// ========================
 tasks.named('test') {
-	useJUnitPlatform()
+    useJUnitPlatform() // Configura JUnit 5
 }

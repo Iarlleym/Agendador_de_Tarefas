@@ -7,11 +7,32 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * 🔹 Interface de repositório para a entidade TarefasEntity.
+ *
+ * O MongoRepository já oferece métodos básicos de CRUD (Create, Read, Update, Delete)
+ * sem precisar escrever implementação, como save(), findById(), deleteById(), etc.
+ *
+ * Aqui, adicionamos métodos específicos para consultas customizadas.
+ */
 @Repository
 public interface TarefasRepository extends MongoRepository<TarefasEntity, String> {
 
-    List<TarefasEntity> findByDataEventoBetween (LocalDateTime dataInicial, LocalDateTime dataFinal);
+    /**
+     * Busca todas as tarefas cujo campo 'dataEvento' esteja dentro do intervalo especificado.
+     *
+     * @param dataInicial início do período
+     * @param dataFinal fim do período
+     * @return lista de tarefas dentro do intervalo
+     */
+    List<TarefasEntity> findByDataEventoBetween(LocalDateTime dataInicial, LocalDateTime dataFinal);
 
-    List <TarefasEntity> findByEmailUsuario (String email);
+    /**
+     * Busca todas as tarefas associadas a um e-mail de usuário específico.
+     *
+     * @param email e-mail do usuário
+     * @return lista de tarefas do usuário
+     */
+    List<TarefasEntity> findByEmailUsuario(String email);
 
 }
