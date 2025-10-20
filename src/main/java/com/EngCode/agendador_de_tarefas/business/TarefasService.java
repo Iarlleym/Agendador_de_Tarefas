@@ -42,7 +42,7 @@ public class TarefasService {
     // Busca todas as tarefas dentro de um intervalo de tempo específico.
     public List<TarefasDTO> buscaTarefasAgendadasPorPeriodo(LocalDateTime dataInicial, LocalDateTime dataFinal) {
         return tarefasConverter.paraListaTarefasDTO(
-                tarefasRepository.findByDataEventoBetween(dataInicial, dataFinal)); // Busca entre duas datas
+                tarefasRepository.findByDataEventoBetweenAndStatusNotificacaoEnum(dataInicial, dataFinal, StatusNotificacaoEnum.PENDENTE)); // Busca entre duas datas
     }
 
     // Busca todas as tarefas cadastradas de um usuário específico (com base no token JWT).
