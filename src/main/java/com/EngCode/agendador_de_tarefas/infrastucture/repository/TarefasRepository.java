@@ -1,6 +1,7 @@
 package com.EngCode.agendador_de_tarefas.infrastucture.repository;
 
 import com.EngCode.agendador_de_tarefas.infrastucture.entity.TarefasEntity;
+import com.EngCode.agendador_de_tarefas.infrastucture.enums.StatusNotificacaoEnum;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
@@ -25,7 +26,9 @@ public interface TarefasRepository extends MongoRepository<TarefasEntity, String
      * @param dataFinal fim do período
      * @return lista de tarefas dentro do intervalo
      */
-    List<TarefasEntity> findByDataEventoBetween(LocalDateTime dataInicial, LocalDateTime dataFinal);
+    List<TarefasEntity> findByDataEventoBetweenAndStatusNotificacaoEnum(LocalDateTime dataInicial,
+                                                                        LocalDateTime dataFinal,
+                                                                        StatusNotificacaoEnum statusNotificacaoEnum);
 
     /**
      * Busca todas as tarefas associadas a um e-mail de usuário específico.
